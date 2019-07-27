@@ -19,7 +19,7 @@
        (costhetamax * (1.0 - costhetamax)^6)}))
 
 (define (lazanyi-schlick costheta f0 a)
- @${schlick[costheta, f0] - a * costheta * (1.0 - costheta)^6})
+  @${schlick[costheta, f0] - a * costheta * (1.0 - costheta)^6})
 
 (define (dielectric costhetai costhetat etai etat)
   (let* ([t0 @${etat * costhetai}]
@@ -37,37 +37,16 @@
          [costhetat @${sqrt[1.0 - sint2]}])
     (dielectric costhetai costhetat etai etat)))
 
-(define ior 1.4)
-(define f0 (schlick-f0 1.0 ior))
-;;(define f0 0.8)
-(define f82 0.8)
+(define (conductor costhetai eta k)
+  (let* ([tmpf @${eta^2 + k^2}]
+         [costhetai2 @${costhetai^2}]
+         [tmp @${costhetai2 * tmpf}]
+         [a @${2.0 * costhetai * eta}]
+         [rp @${(tmp - a + 1.0) / (tmp + a + 1.0)}]
+         [ro @${(tmpf - a + costhetai2) / (tmpf + a + costhetai2)}])
+    @${0.5 * (rp + ro)}))
 
-;; (define a (lazanyi-schlick-a f0 f82))
-(define a 0.0)
-
-f0
-a
-
-;; (plot-file
-;;  (list (function
-;;         (lambda (x) (schlick (degrees->cos x) f0)) 0 90
-;;         #:label "schlick"
-;;         #:color 0)
-;;        (function
-;;         (lambda (x) (lazanyi-schlick (degrees->cos x) f0 a)) 0 90
-;;         #:label "lazanyi-schlick"
-;;         #:color 1)
-;;        (function
-;;         (lambda (x) (dielectric-reflect (degrees->cos x) 1.0 ior)) 0 90
-;;         #:label "dielectric"
-;;         #:color 2))
-;;  #:y-min 0.0
-;;  #:width 512
-;;  #:height 512
-;;  #:legend-anchor 'bottom-left
-;;  "fresnel.png")
-
-(define (schlick-vs-fresnel ior color)
+(define (schlick-vs-dielectric ior color)
   (let ([f0 (schlick-f0 1.0 ior)])
     (list (function
            (lambda (x) (schlick (degrees->cos x) f0)) 0 90
@@ -80,14 +59,43 @@ a
           )))
 
 (plot-file
- (list (schlick-vs-fresnel 1.3 0)
-       (schlick-vs-fresnel 1.6 1)
-       (schlick-vs-fresnel 1.9 2))
+ (list (schlick-vs-dielectric 1.3 0)
+       (schlick-vs-dielectric 1.6 1)
+       (schlick-vs-dielectric 1.9 2))
+ #:y-min 0.0
+ #:width 512
+ #:height 512
+ #:legend-anchor 'top-left
+ "schlick_dielectric.png")
+
+(define (schlick-vs-conductor eta k color)
+  (let* ([f0 (conductor 1.0 eta k)]
+         [f82 (conductor (/ 1.0 7.0) eta k)]
+         [a (lazanyi-schlick-a f0 f82)])
+    (list (function
+           (lambda (x) (schlick (degrees->cos x) f0)) 0 90
+           #:label (string-append "IoR " (number->string eta) " k " (number->string k))
+           #:color color)
+          (function
+           (lambda (x) (lazanyi-schlick (degrees->cos x) f0 a)) 0 90
+           #:color color
+           #:style 'long-dash)
+          (function
+           (lambda (x) (conductor (degrees->cos x) eta k)) 0 90
+           #:color color
+           #:style 'dot)
+          )))
+
+(plot-file
+ (list (schlick-vs-conductor 0.14 4.0 2)
+       (schlick-vs-conductor 1.5 7.6 0)
+       (schlick-vs-conductor 3.7 2.9 1)
+       )
  #:y-min 0.0
  #:width 512
  #:height 512
  #:legend-anchor 'bottom-left
- "schlick.png")
+ "schlick_conductor.png")
 
 ;; (plot-file 
 ;;  (function (lambda (x) (lazanyi-schlick (degrees->cos x) f0 a)) 0 90
