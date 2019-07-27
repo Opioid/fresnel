@@ -58,13 +58,15 @@
            #:style 'dot)
           )))
 
+(define plot-dimensions 640)
+
 (plot-file
  (list (schlick-vs-dielectric 1.3 0)
        (schlick-vs-dielectric 1.6 1)
        (schlick-vs-dielectric 1.9 2))
  #:y-min 0.0
- #:width 512
- #:height 512
+ #:width plot-dimensions
+ #:height plot-dimensions
  #:legend-anchor 'top-left
  "schlick_dielectric.png")
 
@@ -92,8 +94,8 @@
        (schlick-vs-conductor 3.7 2.9 1)
        )
  #:y-min 0.0
- #:width 512
- #:height 512
+ #:width plot-dimensions
+ #:height plot-dimensions
  #:legend-anchor 'bottom-left
  "schlick_conductor.png")
 
