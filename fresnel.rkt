@@ -48,24 +48,46 @@
 f0
 a
 
+;; (plot-file
+;;  (list (function
+;;         (lambda (x) (schlick (degrees->cos x) f0)) 0 90
+;;         #:label "schlick"
+;;         #:color 0)
+;;        (function
+;;         (lambda (x) (lazanyi-schlick (degrees->cos x) f0 a)) 0 90
+;;         #:label "lazanyi-schlick"
+;;         #:color 1)
+;;        (function
+;;         (lambda (x) (dielectric-reflect (degrees->cos x) 1.0 ior)) 0 90
+;;         #:label "dielectric"
+;;         #:color 2))
+;;  #:y-min 0.0
+;;  #:width 512
+;;  #:height 512
+;;  #:legend-anchor 'bottom-left
+;;  "fresnel.png")
+
+(define (schlick-vs-fresnel ior color)
+  (let ([f0 (schlick-f0 1.0 ior)])
+    (list (function
+           (lambda (x) (schlick (degrees->cos x) f0)) 0 90
+           #:label (string-append "IoR " (number->string ior))
+           #:color color)
+          (function
+           (lambda (x) (dielectric-reflect (degrees->cos x) 1.0 ior)) 0 90
+           #:color color
+           #:style 'dot)
+          )))
+
 (plot-file
- (list (function
-        (lambda (x) (schlick (degrees->cos x) f0)) 0 90
-        #:label "schlick"
-        #:color 0)
-       (function
-        (lambda (x) (lazanyi-schlick (degrees->cos x) f0 a)) 0 90
-        #:label "lazanyi-schlick"
-        #:color 1)
-       (function
-        (lambda (x) (dielectric-reflect (degrees->cos x) 1.0 ior)) 0 90
-        #:label "dielectric"
-        #:color 2))
+ (list (schlick-vs-fresnel 1.3 0)
+       (schlick-vs-fresnel 1.6 1)
+       (schlick-vs-fresnel 1.9 2))
  #:y-min 0.0
  #:width 512
  #:height 512
  #:legend-anchor 'bottom-left
- "fresnel.png")
+ "schlick.png")
 
 ;; (plot-file 
 ;;  (function (lambda (x) (lazanyi-schlick (degrees->cos x) f0 a)) 0 90
