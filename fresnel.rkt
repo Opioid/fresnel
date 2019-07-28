@@ -48,15 +48,18 @@
 
 (define (schlick-vs-dielectric ior color)
   (let ([f0 (schlick-f0 1.0 ior)]
-        [label (string-append "IoR " (number->string ior) "\t")])
+        [label-0 (string-append "IoR " (number->string ior) "\t")]
+        [label-n "\t\t"])
     (list (function
            (lambda (x) (schlick (degrees->cos x) f0)) 0 90
-           #:label (string-append label "Schlick")
-           #:color color)
+           #:label (string-append label-0 "Schlick")
+           #:color color
+           #:width 1.5)
           (function
            (lambda (x) (dielectric-reflect (degrees->cos x) 1.0 ior)) 0 90
-           #:label (string-append label "Dielectric")
+           #:label (string-append label-n "Dielectric")
            #:color color
+           #:width 1.5
            #:style 'dot)
           )))
 
@@ -69,8 +72,8 @@
  #:y-min 0.0
  #:width plot-dimensions
  #:height plot-dimensions
- #:x-label "angle"
- #:y-label "reflection"
+ #:x-label "Angle °"
+ #:y-label "Reflection"
  #:legend-anchor 'top-left
  "schlick_dielectric.png")
 
@@ -78,20 +81,24 @@
   (let* ([f0 (conductor 1.0 eta k)]
          [f82 (conductor (/ 1.0 7.0) eta k)]
          [a (lazanyi-schlick-a f0 f82)]
-         [label (string-append "IoR " (number->string eta) "\tk " (number->string k) "\t")])
+         [label-0 (string-append "IoR " (number->string eta) "\tk " (number->string k) "\t")]
+         [label-n "\t\t\t\t"])
     (list (function
            (lambda (x) (schlick (degrees->cos x) f0)) 0 90
-           #:label (string-append label "Schlick")
-           #:color color)
+           #:label (string-append label-0 "Schlick")
+           #:color color
+           #:width 1.5)
           (function
            (lambda (x) (lazanyi-schlick (degrees->cos x) f0 a)) 0 90
-           #:label (string-append label "Lazányi-Schlick")
+           #:label (string-append label-n "Lazányi-Schlick")
            #:color color
+           #:width 1.5
            #:style 'long-dash)
           (function
            (lambda (x) (conductor (degrees->cos x) eta k)) 0 90
-           #:label (string-append label "Conductor")
+           #:label (string-append label-n "Conductor")
            #:color color
+           #:width 1.5
            #:style 'dot)
           )))
 
@@ -103,8 +110,8 @@
  #:y-min 0.0
  #:width plot-dimensions
  #:height plot-dimensions
- #:x-label "angle"
- #:y-label "reflection"
+ #:x-label "Angle °"
+ #:y-label "Reflection"
  #:legend-anchor 'bottom-left
  "schlick_conductor.png")
 
