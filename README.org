@@ -1,0 +1,13 @@
+* fresnel
+
+A Racket script to plot fresnel equations.
+
+Inspired by Naty Hoffman's presentation [[http://renderwonk.com/publications/mam2019/naty_mam2019.pdf][Fresnel Equations Considered Harmful]], the following plots compare the fresnel equations for dielectric and conductive materials against the /Schlick/ and /Lazányi-Schlick/ approximations, respectively.
+
+The main point of Hoffman's presentation is that the approximations might be an overall better choice for RGB-rendering, which is explained in great detail. My personal, simplistic take-away is that the /Lazányi-Schlick/ approximation can be used to better model the "dip" in reflectivity of conductive materials compared to the /Schlick/ approximation.
+
+** Dielectric
+[[file:schlick_dielectric.png]]
+
+** Conductor
+[[file:schlick_conductor.png]]
