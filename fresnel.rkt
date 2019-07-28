@@ -47,18 +47,20 @@
     @${0.5 * (rp + ro)}))
 
 (define (schlick-vs-dielectric ior color)
-  (let ([f0 (schlick-f0 1.0 ior)])
+  (let ([f0 (schlick-f0 1.0 ior)]
+        [label (string-append "IoR " (number->string ior) "\t")])
     (list (function
            (lambda (x) (schlick (degrees->cos x) f0)) 0 90
-           #:label (string-append "IoR " (number->string ior))
+           #:label (string-append label "Schlick")
            #:color color)
           (function
            (lambda (x) (dielectric-reflect (degrees->cos x) 1.0 ior)) 0 90
+           #:label (string-append label "Dielectric")
            #:color color
            #:style 'dot)
           )))
 
-(define plot-dimensions 640)
+(define plot-dimensions 720)
 
 (plot-file
  (list (schlick-vs-dielectric 1.3 0)
@@ -67,23 +69,28 @@
  #:y-min 0.0
  #:width plot-dimensions
  #:height plot-dimensions
+ #:x-label "angle"
+ #:y-label "reflection"
  #:legend-anchor 'top-left
  "schlick_dielectric.png")
 
 (define (schlick-vs-conductor eta k color)
   (let* ([f0 (conductor 1.0 eta k)]
          [f82 (conductor (/ 1.0 7.0) eta k)]
-         [a (lazanyi-schlick-a f0 f82)])
+         [a (lazanyi-schlick-a f0 f82)]
+         [label (string-append "IoR " (number->string eta) "\tk " (number->string k) "\t")])
     (list (function
            (lambda (x) (schlick (degrees->cos x) f0)) 0 90
-           #:label (string-append "IoR " (number->string eta) " k " (number->string k))
+           #:label (string-append label "Schlick")
            #:color color)
           (function
            (lambda (x) (lazanyi-schlick (degrees->cos x) f0 a)) 0 90
+           #:label (string-append label "Lazányi-Schlick")
            #:color color
            #:style 'long-dash)
           (function
            (lambda (x) (conductor (degrees->cos x) eta k)) 0 90
+           #:label (string-append label "Conductor")
            #:color color
            #:style 'dot)
           )))
@@ -96,6 +103,8 @@
  #:y-min 0.0
  #:width plot-dimensions
  #:height plot-dimensions
+ #:x-label "angle"
+ #:y-label "reflection"
  #:legend-anchor 'bottom-left
  "schlick_conductor.png")
 
