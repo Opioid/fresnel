@@ -81,7 +81,7 @@
   (let* ([f0 (conductor 1.0 eta k)]
          [f82 (conductor (/ 1.0 7.0) eta k)]
          [a (lazanyi-schlick-a f0 f82)]
-         [label-0 (string-append "IoR " (number->string eta) "\tk " (number->string k) "\t")]
+         [label-0 (string-append "η " (number->string eta) "\tκ " (number->string k) "\t")]
          [label-n "\t\t\t\t"])
     (list (function
            (lambda (x) (schlick (degrees->cos x) f0)) 0 90
@@ -105,8 +105,7 @@
 (plot-file
  (list (schlick-vs-conductor 0.14 4.0 2)
        (schlick-vs-conductor 1.5 7.6 0)
-       (schlick-vs-conductor 3.7 2.9 1)
-       )
+       (schlick-vs-conductor 3.7 2.9 1))
  #:y-min 0.0
  #:width plot-dimensions
  #:height plot-dimensions
@@ -114,9 +113,3 @@
  #:y-label "Reflection"
  #:legend-anchor 'bottom-left
  "schlick_conductor.png")
-
-;; (plot-file 
-;;  (function (lambda (x) (lazanyi-schlick (degrees->cos x) f0 a)) 0 90
-;;            #:y-min 0.0
-;;            #:label "y = schlick(x)")
-;;  "test.png")
