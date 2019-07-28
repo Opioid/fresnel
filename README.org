@@ -9,4 +9,5 @@ The main point of Hoffman's presentation is that the approximations might be an 
 
 ** Conductor
 [[file:schlick_conductor.png]]
+
 η and κ are the real and imaginary part of the complex Index of Refraction used for conductive materials. 
