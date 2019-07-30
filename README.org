@@ -14,7 +14,17 @@ The main point of /Hoffman's/ presentation is that the approximations might be a
 
 ** Renderings
 
-No renderings as of now.
+#+BEGIN_EXAMPLE
+|------------|------------|------------|
+|            |            |  Lazányi-  |
+|  Conductor |  Schlick   |  Schlick   |
+|            |            |            |
+|------------|------------|------------|
+|            |  Error     |  Error     |
+|   Plot     |  Schlick   |  Lazányi-  |
+|            |            |  Schlick   |
+|------------|------------|------------|
+#+END_EXAMPLE
 
 *** Silver
 
@@ -32,5 +42,5 @@ No renderings as of now.
 
 *** Aluminum
 
-η = (1.50694, 0.926041f, 0.68251)
+η = (1.50694, 0.926041, 0.68251)
 κ = (7.6307, 6.3849, 5.6230)

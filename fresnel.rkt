@@ -187,3 +187,10 @@
  #:width 640
  #:height 640
  "chromium.png")
+
+(plot-file
+ (rgb-fresnel 1.50694 0.926041 0.68251 7.6307 6.3849 5.6230)
+ #:y-min 0.0
+ #:width 640
+ #:height 640
+ "aluminium.png")
