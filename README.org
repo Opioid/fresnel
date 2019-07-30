@@ -15,20 +15,21 @@ The main point of /Hoffman's/ presentation is that the approximations might be a
 ** Renderings
 
 #+BEGIN_EXAMPLE
-|------------|------------|------------|
-|            |            |  Lazányi-  |
-|  Conductor |  Schlick   |  Schlick   |
-|            |            |            |
-|------------|------------|------------|
-|            |  Error     |  Error     |
-|   Plot     |  Schlick   |  Lazányi-  |
-|            |            |  Schlick   |
-|------------|------------|------------|
+|----------|----------|----------|
+|          |          | Lazányi- |
+| Conduct. | Schlick  | Schlick  |
+|          |          |          |
+|----------|----------|----------|
+|          | Error    | Error    |
+|  Plot    | Schlick  | Lazányi- |
+|          |          | Schlick  |
+|----------|----------|----------|
 #+END_EXAMPLE
 
 *** Silver
 
 η = (0.13708, 0.12945, 0.14075)
+
 κ = (4.0625, 3.1692, 2.6034)
 
 [[https://opioid.github.io/fresnel/images/silver_comparison.png]]
@@ -36,6 +37,7 @@ The main point of /Hoffman's/ presentation is that the approximations might be a
 *** Chromium
 
 η = (3.11847, 3.02492, 2.44207)
+
 κ = (3.3190, 3.3322, 3.2034)
 
 [[https://opioid.github.io/fresnel/images/chromium_comparison.png]]
@@ -43,4 +45,5 @@ The main point of /Hoffman's/ presentation is that the approximations might be a
 *** Aluminum
 
 η = (1.50694, 0.926041, 0.68251)
+
 κ = (7.6307, 6.3849, 5.6230)
