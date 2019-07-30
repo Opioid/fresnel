@@ -15,3 +15,18 @@ The main point of /Hoffman's/ presentation is that the approximations might be a
 ** Renderings
 
 No renderings as of now.
+
+*** Silver
+
+η = (0.13708, 0.12945, 0.14075)
+κ = (4.0625, 3.1692, 2.6034)
+
+*** Chromium
+
+η = (3.11847, 3.02492, 2.44207)
+κ = (3.3190, 3.3322, 3.2034)
+
+*** Aluminum
+
+η = (1.50694, 0.926041f, 0.68251)
+κ = (7.6307, 6.3849, 5.6230)
