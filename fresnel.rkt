@@ -116,81 +116,42 @@
 
 
 (define (rgb-fresnel reta geta beta rk gk bk)
-  (let* ([costhetamax (/ 1.0 7.0)]
-         [rf0 (conductor 1.0 reta rk)]
-         [rf82 (conductor costhetamax reta rk)]
-         [ra (lazanyi-schlick-a rf0 rf82)]
-         [gf0 (conductor 1.0 geta gk)]
-         [gf82 (conductor costhetamax geta gk)]
-         [ga (lazanyi-schlick-a gf0 gf82)]
-         [bf0 (conductor 1.0 beta bk)]
-         [bf82 (conductor costhetamax beta bk)]
-         [ba (lazanyi-schlick-a bf0 bf82)])
-    (list (function
-           (lambda (x) (schlick (degrees->cos x) rf0)) 0 90
-       ;    #:label "Schlick"
-           #:color 'red
-           #:width 2.5)
-          (function
-           (lambda (x) (lazanyi-schlick (degrees->cos x) rf0 ra)) 0 90
-           #:color 'red
-           #:width 2.5
-           #:style 'long-dash)
-          (function
-           (lambda (x) (conductor (degrees->cos x) reta rk)) 0 90
-           #:color 'red
-           #:width 2.5
-           #:style 'dot)
-          (function
-           (lambda (x) (schlick (degrees->cos x) gf0)) 0 90
-           #:color 'green
-           #:width 2.5)
-          (function
-           (lambda (x) (lazanyi-schlick (degrees->cos x) gf0 ga)) 0 90
-           #:color 'green
-           #:width 2.5
-           #:style 'long-dash)
-          (function
-           (lambda (x) (conductor (degrees->cos x) geta gk)) 0 90
-           #:color 'green
-           #:width 2.5
-           #:style 'dot)
-          (function
-           (lambda (x) (schlick (degrees->cos x) bf0)) 0 90
-           #:color 'blue
-           #:width 2.5)
-          (function
-           (lambda (x) (lazanyi-schlick (degrees->cos x) bf0 ba)) 0 90
-           #:color 'blue
-           #:width 2.5
-           #:style 'long-dash)
-          (function
-           (lambda (x) (conductor (degrees->cos x) beta bk)) 0 90
-           #:color 'blue
-           #:width 2.5
-           #:style 'dot))))
+  (define (channel eta k color)
+    (let* ([f0 (conductor 1.0 eta k)]
+           [f82 (conductor (/ 1.0 7.0) eta k)]
+           [a (lazanyi-schlick-a f0 f82)])
+      (list (function
+             (lambda (x) (schlick (degrees->cos x) f0)) 0 90
+             #:color color
+             #:width 2.5)
+            (function
+             (lambda (x) (lazanyi-schlick (degrees->cos x) f0 a)) 0 90
+             #:color color
+             #:width 2.5
+             #:style 'long-dash)
+            (function
+             (lambda (x) (conductor (degrees->cos x) eta k)) 0 90
+             #:color color
+             #:width 2.5
+             #:style 'dot))))
+  (list (channel reta rk 'red)
+        (channel geta gk 'green)
+        (channel beta bk 'blue)))
 
 (plot-foreground 'white)
 (plot-background 'black)
 (plot-decorations? #f)
 
-(plot-file
- (rgb-fresnel 0.13708 0.12945 0.14075 4.0625 3.1692 2.6034) 
- #:y-min 0.0
- #:width 640
- #:height 640
- "silver.png")
+(define (plot-rgb-fresnel reta geta beta rk gk bk filename)
+  (plot-file
+   (rgb-fresnel reta geta beta rk gk bk) 
+   #:y-min 0.0
+   #:width 640
+   #:height 640
+   filename))
 
-(plot-file
- (rgb-fresnel 3.11847 3.02492 2.44207 3.3190 3.3322 3.2034) 
- #:y-min 0.0
- #:width 640
- #:height 640
- "chromium.png")
+(plot-rgb-fresnel 0.13708 0.12945 0.14075 4.0625 3.1692 2.6034 "silver.png")
 
-(plot-file
- (rgb-fresnel 1.50694 0.926041 0.68251 7.6307 6.3849 5.6230)
- #:y-min 0.0
- #:width 640
- #:height 640
- "aluminium.png")
+(plot-rgb-fresnel 3.11847 3.02492 2.44207 3.3190 3.3322 3.2034 "chromium.png")
+
+(plot-rgb-fresnel 1.50694 0.926041 0.68251 7.6307 6.3849 5.6230 "aluminium.png")
