@@ -28,6 +28,8 @@ No renderings as of now.
 η = (3.11847, 3.02492, 2.44207)
 κ = (3.3190, 3.3322, 3.2034)
 
+[[https://opioid.github.io/fresnel/images/chromium_comparison.png]]
+
 *** Aluminum
 
 η = (1.50694, 0.926041f, 0.68251)

@@ -130,46 +130,44 @@
            (lambda (x) (schlick (degrees->cos x) rf0)) 0 90
        ;    #:label "Schlick"
            #:color 'red
-           #:width 1.5)
+           #:width 2.5)
           (function
            (lambda (x) (lazanyi-schlick (degrees->cos x) rf0 ra)) 0 90
-      ;     #:label "Lazányi-Schlick"
            #:color 'red
-           #:width 1.5
+           #:width 2.5
            #:style 'long-dash)
           (function
            (lambda (x) (conductor (degrees->cos x) reta rk)) 0 90
-         ;  #:label "Conductor"
            #:color 'red
-           #:width 1.5
+           #:width 2.5
            #:style 'dot)
           (function
            (lambda (x) (schlick (degrees->cos x) gf0)) 0 90
            #:color 'green
-           #:width 1.5)
+           #:width 2.5)
           (function
            (lambda (x) (lazanyi-schlick (degrees->cos x) gf0 ga)) 0 90
            #:color 'green
-           #:width 1.5
+           #:width 2.5
            #:style 'long-dash)
           (function
            (lambda (x) (conductor (degrees->cos x) geta gk)) 0 90
            #:color 'green
-           #:width 1.5
+           #:width 2.5
            #:style 'dot)
           (function
            (lambda (x) (schlick (degrees->cos x) bf0)) 0 90
            #:color 'blue
-           #:width 1.5)
+           #:width 2.5)
           (function
            (lambda (x) (lazanyi-schlick (degrees->cos x) bf0 ba)) 0 90
            #:color 'blue
-           #:width 1.5
+           #:width 2.5
            #:style 'long-dash)
           (function
            (lambda (x) (conductor (degrees->cos x) beta bk)) 0 90
            #:color 'blue
-           #:width 1.5
+           #:width 2.5
            #:style 'dot))))
 
 (plot-foreground 'white)
@@ -182,3 +180,10 @@
  #:width 640
  #:height 640
  "silver.png")
+
+(plot-file
+ (rgb-fresnel 3.11847 3.02492 2.44207 3.3190 3.3322 3.2034) 
+ #:y-min 0.0
+ #:width 640
+ #:height 640
+ "chromium.png")
