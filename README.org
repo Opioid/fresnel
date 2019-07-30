@@ -21,6 +21,8 @@ No renderings as of now.
 η = (0.13708, 0.12945, 0.14075)
 κ = (4.0625, 3.1692, 2.6034)
 
+[[https://opioid.github.io/fresnel/images/silver_comparison.png]]
+
 *** Chromium
 
 η = (3.11847, 3.02492, 2.44207)

@@ -65,17 +65,17 @@
 
 (define plot-dimensions 720)
 
-(plot-file
- (list (schlick-vs-dielectric 1.3 0)
-       (schlick-vs-dielectric 1.6 1)
-       (schlick-vs-dielectric 1.9 2))
- #:y-min 0.0
- #:width plot-dimensions
- #:height plot-dimensions
- #:x-label "Angle °"
- #:y-label "Reflection"
- #:legend-anchor 'top-left
- "schlick_dielectric.png")
+;; (plot-file
+;;  (list (schlick-vs-dielectric 1.3 0)
+;;        (schlick-vs-dielectric 1.6 1)
+;;        (schlick-vs-dielectric 1.9 2))
+;;  #:y-min 0.0
+;;  #:width plot-dimensions
+;;  #:height plot-dimensions
+;;  #:x-label "Angle °"
+;;  #:y-label "Reflection"
+;;  #:legend-anchor 'top-left
+;;  "schlick_dielectric.png")
 
 (define (schlick-vs-conductor eta k color)
   (let* ([f0 (conductor 1.0 eta k)]
@@ -102,14 +102,83 @@
            #:style 'dot)
           )))
 
+;; (plot-file
+;;  (list (schlick-vs-conductor 0.14 4.0 2)
+;;        (schlick-vs-conductor 1.5 7.6 0)
+;;        (schlick-vs-conductor 3.7 2.9 1))
+;;  #:y-min 0.0
+;;  #:width plot-dimensions
+;;  #:height plot-dimensions
+;;  #:x-label "Angle °"
+;;  #:y-label "Reflection"
+;;  #:legend-anchor 'bottom-left
+;;  "schlick_conductor.png")
+
+
+(define (rgb-fresnel reta geta beta rk gk bk)
+  (let* ([costhetamax (/ 1.0 7.0)]
+         [rf0 (conductor 1.0 reta rk)]
+         [rf82 (conductor costhetamax reta rk)]
+         [ra (lazanyi-schlick-a rf0 rf82)]
+         [gf0 (conductor 1.0 geta gk)]
+         [gf82 (conductor costhetamax geta gk)]
+         [ga (lazanyi-schlick-a gf0 gf82)]
+         [bf0 (conductor 1.0 beta bk)]
+         [bf82 (conductor costhetamax beta bk)]
+         [ba (lazanyi-schlick-a bf0 bf82)])
+    (list (function
+           (lambda (x) (schlick (degrees->cos x) rf0)) 0 90
+       ;    #:label "Schlick"
+           #:color 'red
+           #:width 1.5)
+          (function
+           (lambda (x) (lazanyi-schlick (degrees->cos x) rf0 ra)) 0 90
+      ;     #:label "Lazányi-Schlick"
+           #:color 'red
+           #:width 1.5
+           #:style 'long-dash)
+          (function
+           (lambda (x) (conductor (degrees->cos x) reta rk)) 0 90
+         ;  #:label "Conductor"
+           #:color 'red
+           #:width 1.5
+           #:style 'dot)
+          (function
+           (lambda (x) (schlick (degrees->cos x) gf0)) 0 90
+           #:color 'green
+           #:width 1.5)
+          (function
+           (lambda (x) (lazanyi-schlick (degrees->cos x) gf0 ga)) 0 90
+           #:color 'green
+           #:width 1.5
+           #:style 'long-dash)
+          (function
+           (lambda (x) (conductor (degrees->cos x) geta gk)) 0 90
+           #:color 'green
+           #:width 1.5
+           #:style 'dot)
+          (function
+           (lambda (x) (schlick (degrees->cos x) bf0)) 0 90
+           #:color 'blue
+           #:width 1.5)
+          (function
+           (lambda (x) (lazanyi-schlick (degrees->cos x) bf0 ba)) 0 90
+           #:color 'blue
+           #:width 1.5
+           #:style 'long-dash)
+          (function
+           (lambda (x) (conductor (degrees->cos x) beta bk)) 0 90
+           #:color 'blue
+           #:width 1.5
+           #:style 'dot))))
+
+(plot-foreground 'white)
+(plot-background 'black)
+(plot-decorations? #f)
+
 (plot-file
- (list (schlick-vs-conductor 0.14 4.0 2)
-       (schlick-vs-conductor 1.5 7.6 0)
-       (schlick-vs-conductor 3.7 2.9 1))
+ (rgb-fresnel 0.13708 0.12945 0.14075 4.0625 3.1692 2.6034) 
  #:y-min 0.0
- #:width plot-dimensions
- #:height plot-dimensions
- #:x-label "Angle °"
- #:y-label "Reflection"
- #:legend-anchor 'bottom-left
- "schlick_conductor.png")
+ #:width 640
+ #:height 640
+ "silver.png")
