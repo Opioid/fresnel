@@ -47,3 +47,5 @@ The main point of /Hoffman's/ presentation is that the approximations might be a
 η = (1.50694, 0.926041, 0.68251)
 
 κ = (7.6307, 6.3849, 5.6230)
+
+[[https://opioid.github.io/fresnel/images/aluminium_comparison.png]]
