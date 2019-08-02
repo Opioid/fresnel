@@ -45,10 +45,10 @@ The images are rendered with [[https://github.com/Opioid/sprout][sprout]].
 [[https://opioid.github.io/fresnel/images/silver_comparison_nc.png]]
 [[https://opioid.github.io/fresnel/images/silver_comparison.png][Caustic]]
 
-| Approximation   |       RMSE | PSNR       |
-|-----------------+------------+------------|
-| Schlick         | 0.00212086 | 53.4698 dB |
-| Lazányi-Schlick | 0.00127081 | 57.9184 dB |
+| Approximation   |   RMSE | PSNR     |
+|-----------------+--------+----------|
+| Schlick         | 0.0021 | 53.47 dB |
+| Lazányi-Schlick | 0.0013 | 57.92 dB |
 
 *** Chromium
 
@@ -59,10 +59,10 @@ The images are rendered with [[https://github.com/Opioid/sprout][sprout]].
 [[https://opioid.github.io/fresnel/images/chromium_comparison_nc.png]]
 [[https://opioid.github.io/fresnel/images/chromium_comparison.png][Caustic]]
 
-| Approximation   |       RMSE | PSNR       |
-|-----------------+------------+------------|
-| Schlick         |  0.0176443 | 35.0679 dB |
-| Lazányi-Schlick | 0.00188891 | 54.4758 dB |
+| Approximation   |   RMSE | PSNR     |
+|-----------------+--------+----------|
+| Schlick         | 0.0176 | 35.07 dB |
+| Lazányi-Schlick | 0.0019 | 54.48 dB |
 
 *** Aluminum
 
@@ -73,7 +73,7 @@ The images are rendered with [[https://github.com/Opioid/sprout][sprout]].
 [[https://opioid.github.io/fresnel/images/aluminium_comparison_nc.png]]
 [[https://opioid.github.io/fresnel/images/aluminium_comparison.png][Caustic]]
 
-| Approximation   |      RMSE | PSNR       |
-|-----------------+-----------+------------|
-| Schlick         |  0.011685 | 38.6474 dB |
-| Lazányi-Schlick | 0.0019397 | 54.2453 dB |
+| Approximation   |   RMSE | PSNR     |
+|-----------------+--------+----------|
+| Schlick         | 0.0117 | 38.65 dB |
+| Lazányi-Schlick | 0.0019 | 54.25 dB |
