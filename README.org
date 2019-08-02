@@ -27,7 +27,7 @@ Nonetheless images with caustic paths are accessible via the links below the ima
 |          |          | Lazányi- |
 | Conduct. | Schlick  | Schlick  |
 |          |          |          |
-|----------|----------|----------|
+|----------+----------+----------|
 |          | Error    | Error    |
 |  Plot    | Schlick  | Lazányi- |
 |          |          | Schlick  |
