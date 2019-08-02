@@ -58,6 +58,11 @@ Nonetheless images with caustic paths are accessible via the links below the ima
 [[https://opioid.github.io/fresnel/images/chromium_comparison_nc.png]]
 [[https://opioid.github.io/fresnel/images/chromium_comparison.png][Caustic]]
 
+| Approximation   |       RMSE | PSNR       |
+|-----------------+------------+------------|
+| Schlick         |  0.0176443 | 35.0679 dB |
+| Lazányi-Schlick | 0.00188891 | 54.4758 dB |
+
 *** Aluminum
 
 η = (1.50694, 0.926041, 0.68251)
@@ -66,3 +71,8 @@ Nonetheless images with caustic paths are accessible via the links below the ima
 
 [[https://opioid.github.io/fresnel/images/aluminium_comparison_nc.png]]
 [[https://opioid.github.io/fresnel/images/aluminium_comparison.png][Caustic]]
+
+| Approximation   |      RMSE | PSNR       |
+|-----------------+-----------+------------|
+| Schlick         |  0.011685 | 38.6474 dB |
+| Lazányi-Schlick | 0.0019397 | 54.2453 dB |
