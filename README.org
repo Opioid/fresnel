@@ -44,6 +44,7 @@ Nonetheless images with caustic paths are accessible via the links below the ima
 [[https://opioid.github.io/fresnel/images/silver_comparison.png][Caustic]]
 
 | Approximation   |       RMSE | PSNR       |
+|-----------------+------------+------------|
 | Schlick         | 0.00212086 | 53.4698 dB |
 | Lazányi-Schlick | 0.00127081 | 57.9184 dB |
 
