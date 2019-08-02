@@ -51,12 +51,12 @@
         [label-0 (string-append "IoR " (number->string ior) "\t")]
         [label-n "\t\t"])
     (list (function
-           (lambda (x) (schlick (degrees->cos x) f0)) 0 90
+           (λ (x) (schlick (degrees->cos x) f0)) 0 90
            #:label (string-append label-0 "Schlick")
            #:color color
            #:width 1.5)
           (function
-           (lambda (x) (dielectric-reflect (degrees->cos x) 1.0 ior)) 0 90
+           (λ (x) (dielectric-reflect (degrees->cos x) 1.0 ior)) 0 90
            #:label (string-append label-n "Dielectric")
            #:color color
            #:width 1.5
@@ -84,18 +84,18 @@
          [label-0 (string-append "η " (number->string eta) "\tκ " (number->string k) "\t")]
          [label-n "\t\t\t\t"])
     (list (function
-           (lambda (x) (schlick (degrees->cos x) f0)) 0 90
+           (λ (x) (schlick (degrees->cos x) f0)) 0 90
            #:label (string-append label-0 "Schlick")
            #:color color
            #:width 1.5)
           (function
-           (lambda (x) (lazanyi-schlick (degrees->cos x) f0 a)) 0 90
+           (λ (x) (lazanyi-schlick (degrees->cos x) f0 a)) 0 90
            #:label (string-append label-n "Lazányi-Schlick")
            #:color color
            #:width 1.5
            #:style 'long-dash)
           (function
-           (lambda (x) (conductor (degrees->cos x) eta k)) 0 90
+           (λ (x) (conductor (degrees->cos x) eta k)) 0 90
            #:label (string-append label-n "Conductor")
            #:color color
            #:width 1.5
@@ -121,16 +121,16 @@
            [f82 (conductor (/ 1.0 7.0) eta k)]
            [a (lazanyi-schlick-a f0 f82)])
       (list (function
-             (lambda (x) (schlick (degrees->cos x) f0)) 0 90
+             (λ (x) (schlick (degrees->cos x) f0)) 0 90
              #:color color
              #:width 2.5)
             (function
-             (lambda (x) (lazanyi-schlick (degrees->cos x) f0 a)) 0 90
+             (λ (x) (lazanyi-schlick (degrees->cos x) f0 a)) 0 90
              #:color color
              #:width 2.5
              #:style 'long-dash)
             (function
-             (lambda (x) (conductor (degrees->cos x) eta k)) 0 90
+             (λ (x) (conductor (degrees->cos x) eta k)) 0 90
              #:color color
              #:width 2.5
              #:style 'dot))))
@@ -200,11 +200,11 @@
             3.0798 2.9157 2.8025
             ))
 
-(define f0s (vector-map (lambda (eta k) (conductor 1.0 eta k)) etas ks))
+(define f0s (vector-map (λ (eta k) (conductor 1.0 eta k)) etas ks))
 
-(define f82s (vector-map (lambda (eta k) (conductor (/ 1.0 7.0) eta k)) etas ks))
+(define f82s (vector-map (λ (eta k) (conductor (/ 1.0 7.0) eta k)) etas ks))
 
-(define as (vector-map (lambda (f0 f82) (lazanyi-schlick-a f0 f82)) f0s f82s))
+(define as (vector-map (λ (f0 f82) (lazanyi-schlick-a f0 f82)) f0s f82s))
 
 (plot-file
  (points (vector-map vector f0s as))
