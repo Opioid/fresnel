@@ -2,7 +2,8 @@
 
 Inspired by /Naty Hoffman's/ presentation [[http://renderwonk.com/publications/mam2019/naty_mam2019.pdf][Fresnel Equations Considered Harmful]], the following plots compare the fresnel equations for dielectric and conductive materials against the /Schlick/ and /Lazányi-Schlick/ (re-parameterized by /Hoffman/) approximations, respectively.
 
-The main point of /Hoffman's/ presentation is that the approximations might be an overall better choice for RGB-rendering, which is explained in great detail. My personal, simplistic, take-away is that the /Lazányi-Schlick/ approximation can be used to better model the "dip" in reflectivity of conductive materials compared to the /Schlick/ approximation.
+The main point of /Hoffman's/ presentation is that the approximations might be an overall better choice for RGB-rendering, which is explained in great detail. 
+My personal, simplistic, take-away is that the /Lazányi-Schlick/ approximation can be used to better model the "dip" in reflectivity of conductive materials compared to the /Schlick/ approximation.
 
 ** Dielectric
 [[file:schlick_dielectric.png]]
@@ -13,6 +14,12 @@ The main point of /Hoffman's/ presentation is that the approximations might be a
 η and κ are the real and imaginary part of the complex Index of Refraction used for conductive materials.
 
 ** Renderings
+
+The displayed images are rendered without caustics paths, because it makes the difference images easier to read. 
+One reason is, that even with seemingly converged caustics there still are a few very small areas with high difference, which just might be noise.
+Nonetheless images with caustic paths are accessible via the links and it is interesting to see the difference between the fresnel approximations manifest on indirectly lit surfaces.
+
+*** Layout
 
 #+BEGIN_EXAMPLE
 |----------|----------|----------|
@@ -32,7 +39,8 @@ The main point of /Hoffman's/ presentation is that the approximations might be a
 
 κ = (4.0625, 3.1692, 2.6034)
 
-[[https://opioid.github.io/fresnel/images/silver_comparison.png]]
+[[https://opioid.github.io/fresnel/images/silver_comparison_nc.png]]
+[[https://opioid.github.io/fresnel/images/silver_comparison.png][Caustic]]
 
 *** Chromium
 
@@ -40,7 +48,8 @@ The main point of /Hoffman's/ presentation is that the approximations might be a
 
 κ = (3.3190, 3.3322, 3.2034)
 
-[[https://opioid.github.io/fresnel/images/chromium_comparison.png]]
+[[https://opioid.github.io/fresnel/images/chromium_comparison_nc.png]]
+[[https://opioid.github.io/fresnel/images/chromium_comparison.png][Caustic]]
 
 *** Aluminum
 
@@ -48,4 +57,5 @@ The main point of /Hoffman's/ presentation is that the approximations might be a
 
 κ = (7.6307, 6.3849, 5.6230)
 
-[[https://opioid.github.io/fresnel/images/aluminium_comparison.png]]
+[[https://opioid.github.io/fresnel/images/aluminium_comparison_nc.png]]
+[[https://opioid.github.io/fresnel/images/aluminium_comparison.png][Caustic]]
