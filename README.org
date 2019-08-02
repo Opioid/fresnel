@@ -20,6 +20,8 @@ One reason is, that even with seemingly converged caustics, there still are a fe
 
 Nonetheless images with caustic paths are accessible via the links below the images, as it is interesting to see the difference between the fresnel approximations manifest on indirectly lit surfaces.
 
+The images are rendered with [[https://github.com/Opioid/sprout][sprout]].
+
 *** Layout
 
 #+BEGIN_EXAMPLE
@@ -47,7 +49,6 @@ Nonetheless images with caustic paths are accessible via the links below the ima
 |-----------------+------------+------------|
 | Schlick         | 0.00212086 | 53.4698 dB |
 | Lazányi-Schlick | 0.00127081 | 57.9184 dB |
-
 
 *** Chromium
 
