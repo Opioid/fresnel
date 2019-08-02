@@ -16,8 +16,9 @@ My personal, simplistic, take-away is that the /Lazányi-Schlick/ approximation 
 ** Renderings
 
 The displayed images are rendered without caustics paths, because it makes the difference images easier to read. 
-One reason is, that even with seemingly converged caustics there still are a few very small areas with high difference, which just might be noise.
-Nonetheless images with caustic paths are accessible via the links and it is interesting to see the difference between the fresnel approximations manifest on indirectly lit surfaces.
+One reason is, that even with seemingly converged caustics, there still are a few very small areas with high difference, which just might be noise.
+
+Nonetheless images with caustic paths are accessible via the links below the images, as it is interesting to see the difference between the fresnel approximations manifest on indirectly lit surfaces.
 
 *** Layout
 
