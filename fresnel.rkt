@@ -18,6 +18,12 @@
        /
        (costhetamax * (1.0 - costhetamax)^6)}))
 
+(define (f0->a-0 f0)
+  @${5.0 * (sqrt[0.95 - f0])})
+
+(define (f0->a-1 f0)
+  @${5.0 * (1.0 - f0)})
+
 (define (lazanyi-schlick costheta f0 a)
   @${schlick[costheta, f0] - a * costheta * (1.0 - costheta)^6})
 
@@ -81,6 +87,7 @@
   (let* ([f0 (conductor 1.0 eta k)]
          [f82 (conductor (/ 1.0 7.0) eta k)]
          [a (lazanyi-schlick-a f0 f82)]
+         [a2 (f0->a-0 f0)]
          [label-0 (string-append "η " (number->string eta) "\tκ " (number->string k) "\t")]
          [label-n "\t\t\t\t"])
     (list (function
@@ -94,6 +101,12 @@
            #:color color
            #:width 1.5
            #:style 'long-dash)
+          (function
+           (λ (x) (lazanyi-schlick (degrees->cos x) f0 a2)) 0 90
+           #:label (string-append label-n "Lazányi-Schlick 2")
+           #:color color
+           #:width 1.5
+           #:style 'dot-dash)
           (function
            (λ (x) (conductor (degrees->cos x) eta k)) 0 90
            #:label (string-append label-n "Conductor")
@@ -207,7 +220,17 @@
 (define as (vector-map (λ (f0 f82) (lazanyi-schlick-a f0 f82)) f0s f82s))
 
 (plot-file
- (points (vector-map vector f0s as))
+ (list
+  (x-axis
+   #:ticks? #f
+   #:alpha 0.75)
+  (points (vector-map vector f0s as)
+          #:line-width 1.5)
+  (function f0->a-0 0.0 1.0
+            #:width 1.5)
+  (function f0->a-1 0.0 1.0
+            #:width 1.5
+            #:color 2))
  #:x-min 0.0
  #:x-max 1.0
  #:y-min -1.0
