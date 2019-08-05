@@ -22,7 +22,7 @@
   @${5.0 * (sqrt[max[0.0, 0.95 - f0]])})
 
 (define (f0->a-1 f0)
-  @${5.0 * (1.0 - f0)})
+  @${6.0 * (1.0 - f0)})
 
 (define (lazanyi-schlick costheta f0 a)
   @${schlick[costheta, f0] - a * costheta * (1.0 - costheta)^6})
